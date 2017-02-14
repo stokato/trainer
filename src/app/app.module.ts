@@ -9,17 +9,23 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component/app.component';
 import { WorkoutRunnerComponent } from './workout-runner/workout-runner.component/workout-runner.component';
-
+import { WorkoutRunnerModule } from './workout-runner/workout-runner.module';
+import {StartModule} from "./start/start.module";
+import {FinishModule} from "./fihish/finish.module";
+import {routing} from "./app.routes";
 
 // import { routing, routedComponents } from './routes';
 
 @NgModule({
     imports: [
-        BrowserModule, FormsModule, CommonModule//, routing
+        BrowserModule,
+        WorkoutRunnerModule,
+        StartModule,
+        FinishModule,
+        routing
     ],
     declarations: [
-        AppComponent,
-        WorkoutRunnerComponent
+        AppComponent//,
         // TabContent,
         // TechnologicalTabComponent,
         // AdvancedTabComponent,
