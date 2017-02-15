@@ -7,6 +7,7 @@ import {StartComponent} from "./start/start.component/start.component";
 import {WorkoutRunnerComponent} from "./workout-runner/workout-runner.component/workout-runner.component";
 import {FinishComponent} from "./fihish/finish.component/finish.component";
 import {ModuleWithProviders} from "@angular/core";
+import {WorkoutHistoryComponent} from "./workout-history/workout-history.component/workout-history.component";
 
 export const routes: Routes = [
     {
@@ -20,6 +21,10 @@ export const routes: Routes = [
     {
         path: 'finish',
         component: FinishComponent
+    },
+    {
+        path: 'history',
+        component: WorkoutHistoryComponent
     },
     {
         path: '**',

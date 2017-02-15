@@ -8,17 +8,20 @@ import {BrowserModule} from "@angular/platform-browser";
 import {WorkoutRunnerComponent} from "./workout-runner.component/workout-runner.component";
 import {ExerciseDescriptionComponent} from "./exercise-descriptio.component/exercise-description.component";
 import {VideoPlayerComponent} from "./video-player.component/video-player.component";
-import {SecondsToTimePipe} from "./seconds-to-time.pipe";
+import {PipesModule} from "../pipes/pipes.module";
+import {WorkoutHistoryTracker} from "../services/workout-history-tracker.service";
+// import {SecondsToTimePipe} from "../pipes/seconds-to-time.pipe";
 
 
 @NgModule({
-    imports: [ BrowserModule ],
+    imports: [ BrowserModule, PipesModule ],
     declarations: [
         WorkoutRunnerComponent,
         ExerciseDescriptionComponent,
         VideoPlayerComponent,
-        SecondsToTimePipe
+        // SecondsToTimePipe
     ],
+    providers: [WorkoutHistoryTracker],
     exports: [ WorkoutRunnerComponent ]
 })
 export class WorkoutRunnerModule {}

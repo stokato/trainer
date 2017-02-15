@@ -4,7 +4,7 @@
 
 
 import {Injectable} from "@angular/core";
-import {WorkoutPlan, Exercise} from "./model";
+import {WorkoutPlan, Exercise} from "../model";
 import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs";
 

@@ -7,18 +7,28 @@ import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {StartComponent} from "./start.component/start.component";
-import {OrderByPipe} from "./order-by.pipe";
+import {OrderByPipe} from "../pipes/order-by.pipe";
+import {SearchPipe} from "../pipes/search.pipe";
+import {SecondsToTimePipe} from "../pipes/seconds-to-time.pipe";
+import {PipesModule} from "../pipes/pipes.module";
+import {HttpModule} from "@angular/http";
+import {ServicesModule} from "../services/services.module";
 
 @NgModule({
     imports: [
+        HttpModule,
         BrowserModule,
         FormsModule,
         RouterModule,
+        PipesModule,
+        ServicesModule
         // SharedModule
     ],
     declarations: [
         StartComponent,
-        OrderByPipe
+        // OrderByPipe,
+        // SearchPipe,
+        // SecondsToTimePipe
     ],
     exports: [StartComponent]
 })

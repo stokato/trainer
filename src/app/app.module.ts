@@ -3,18 +3,16 @@
  */
 
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component/app.component';
-import { WorkoutRunnerComponent } from './workout-runner/workout-runner.component/workout-runner.component';
 import { WorkoutRunnerModule } from './workout-runner/workout-runner.module';
 import {StartModule} from "./start/start.module";
 import {FinishModule} from "./fihish/finish.module";
 import {routing} from "./app.routes";
-
-// import { routing, routedComponents } from './routes';
+import {WorkoutHistoryModule} from "./workout-history/workout-history.module";
+import {WorkoutHistoryTracker} from "./services/workout-history-tracker.service";
+import {HeaderComponent} from "./header.component/header.component";
 
 @NgModule({
     imports: [
@@ -22,18 +20,14 @@ import {routing} from "./app.routes";
         WorkoutRunnerModule,
         StartModule,
         FinishModule,
+        WorkoutHistoryModule,
         routing
     ],
     declarations: [
-        AppComponent//,
-        // TabContent,
-        // TechnologicalTabComponent,
-        // AdvancedTabComponent,
-        // WindowComponent,
-        // SWFComponent,
-        // routedComponents
+        AppComponent,
+        HeaderComponent
     ],
-    // providers: [AuthGuard, UserService],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

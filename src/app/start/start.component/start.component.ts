@@ -3,10 +3,9 @@
  */
 
 import {Component, OnInit, OnDestroy} from "@angular/core";
-import {WorkoutPlan} from "../../services/model";
+import {WorkoutPlan} from "../../model";
 import {Router} from "@angular/router";
 import {WorkoutService} from "../../services/workout.service";
-import {OrderByPipe} from "../order-by.pipe";
 
 const template = require('./start.component.html');
 const css      = require('./start.component.css');
@@ -14,7 +13,8 @@ const css      = require('./start.component.css');
 @Component({
     selector: 'start',
     template: template,
-    styles:   [ css ]
+    styles:   [ css ],
+    providers: [WorkoutService]
 })
 export class StartComponent implements OnInit, OnDestroy {
     public workoutList: Array<WorkoutPlan> = [];

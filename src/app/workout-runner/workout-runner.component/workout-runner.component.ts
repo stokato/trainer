@@ -4,7 +4,9 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { WorkoutPlan, ExercisePlan, Exercise, ExerciseProgressEvent } from '../../services/model';
+import { WorkoutPlan, ExercisePlan, Exercise, ExerciseProgressEvent } from '../../model';
+import { Router } from '@angular/router';
+import {WorkoutHistoryTracker} from "../../services/workout-history-tracker.service";
 
 const template = require('./worcout-runner.component.html');
 
@@ -22,7 +24,7 @@ export class WorkoutRunnerComponent {
     exerciseTrackingInterval: any;
     workoutPaused: boolean;
 
-    constructor () {
+    constructor ( private router: Router, private tracker: WorkoutHistoryTracker) {
         this.workoutPlan = this.buildWorkout();
         this.restExercise = new ExercisePlan(
             new Exercise("rest", "Relax!", "Relax a bit", "rest.png"),
@@ -219,6 +221,8 @@ export class WorkoutRunnerComponent {
     start () {
         console.log('started');
 
+        this.tracker.startTracking();
+
         this.workoutTimeRemaining = this.workoutPlan.totalWorkoutDuration();
         this.currentExerciseIndex = 0;
 
@@ -237,6 +241,10 @@ export class WorkoutRunnerComponent {
             if(this.exerciseRunningDuration >= this.currentExercise.duration) {
                 clearInterval(this.exerciseTrackingInterval);
 
+                if(this.currentExercise !== this.restExercise) {
+                    this.tracker.exerciseComplete(this.workoutPlan.exercises[this.currentExerciseIndex]);
+                }
+
                 let next: ExercisePlan = this.getNextExercise();
 
                 if(next) {
@@ -246,7 +254,8 @@ export class WorkoutRunnerComponent {
 
                     this.startExercise(next);
                 } else {
-                    console.log("Workout complete!");
+                    this.tracker.endTracking(true);
+                    this.router.navigateByUrl('/finish');
                 }
                 return;
             }
@@ -293,5 +302,9 @@ export class WorkoutRunnerComponent {
 
     ngOnInit() {
         this.start();
+    }
+
+    ngOnDestroy() {
+        this.tracker.endTracking(false);
     }
 }
