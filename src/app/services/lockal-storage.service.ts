@@ -1,6 +1,9 @@
+import {Injectable} from "@angular/core";
 /**
  * Created by "s.t.o.k.a.t.o" on 15.02.2017.
  */
+
+@Injectable()
 export class LocalStorage {
     getItem<T>(key: string): T {
         if(localStorage[key]) {

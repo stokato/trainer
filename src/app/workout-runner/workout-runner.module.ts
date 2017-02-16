@@ -10,16 +10,17 @@ import {ExerciseDescriptionComponent} from "./exercise-descriptio.component/exer
 import {VideoPlayerComponent} from "./video-player.component/video-player.component";
 import {PipesModule} from "../pipes/pipes.module";
 import {WorkoutHistoryTracker} from "../services/workout-history-tracker.service";
-// import {SecondsToTimePipe} from "../pipes/seconds-to-time.pipe";
+import {ServicesModule} from "../services/services.module";
+import {VideoDialogComponent} from "./video-dialog.component/video-dialog.component";
 
 
 @NgModule({
-    imports: [ BrowserModule, PipesModule ],
+    imports: [ BrowserModule, PipesModule, ServicesModule ],
     declarations: [
         WorkoutRunnerComponent,
         ExerciseDescriptionComponent,
         VideoPlayerComponent,
-        // SecondsToTimePipe
+        VideoDialogComponent
     ],
     providers: [WorkoutHistoryTracker],
     exports: [ WorkoutRunnerComponent ]

@@ -5,14 +5,15 @@
 import { NgModule } from '@angular/core';
 import {BrowserModule} from "@angular/platform-browser";
 import {PipesModule} from "../pipes/pipes.module";
-import {WorkoutHistoryTracker} from "../services/workout-history-tracker.service";
 import {WorkoutHistoryComponent} from "./workout-history.component/workout-history.component";
+import {ServicesModule} from "../services/services.module";
 
 
 @NgModule({
     imports: [
         BrowserModule,
-        PipesModule
+        PipesModule,
+        ServicesModule
     ],
     declarations: [ WorkoutHistoryComponent ],
     providers: [],

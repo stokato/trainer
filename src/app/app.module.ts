@@ -13,6 +13,8 @@ import {routing} from "./app.routes";
 import {WorkoutHistoryModule} from "./workout-history/workout-history.module";
 import {WorkoutHistoryTracker} from "./services/workout-history-tracker.service";
 import {HeaderComponent} from "./header.component/header.component";
+import {ModalModule} from "angular2-modal";
+import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 
 @NgModule({
     imports: [
@@ -21,7 +23,9 @@ import {HeaderComponent} from "./header.component/header.component";
         StartModule,
         FinishModule,
         WorkoutHistoryModule,
-        routing
+        routing,
+        ModalModule.forRoot(),
+        BootstrapModalModule
     ],
     declarations: [
         AppComponent,

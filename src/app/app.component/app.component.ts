@@ -1,7 +1,8 @@
 /**
  * Created by Ruslan on 11.02.2017.
  */
-import {Component} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
+import {Overlay} from "angular2-modal";
 
 const template = require('./app.component.html');
 
@@ -12,8 +13,8 @@ const template = require('./app.component.html');
 export class AppComponent {
     name: string = 'World';
 
-    constructor() {
-
+    constructor(overlay: Overlay, viewContainer: ViewContainerRef) {
+        overlay.defaultViewContainer = viewContainer;
     }
 
 
