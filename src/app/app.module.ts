@@ -15,6 +15,7 @@ import {WorkoutHistoryTracker} from "./services/workout-history-tracker.service"
 import {HeaderComponent} from "./header.component/header.component";
 import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
+import {ServicesModule} from "./services/services.module";
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
         WorkoutHistoryModule,
         routing,
         ModalModule.forRoot(),
+        ServicesModule,
         BootstrapModalModule
     ],
     declarations: [

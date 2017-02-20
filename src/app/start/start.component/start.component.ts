@@ -16,29 +16,30 @@ const css      = require('./start.component.css');
     styles:   [ css ],
     providers: [WorkoutService]
 })
-export class StartComponent implements OnInit, OnDestroy {
-    public workoutList: Array<WorkoutPlan> = [];
-    public notFound: boolean = false;
-    public searchTerm: string;
-    private subscription: any;
+export class StartComponent /*implements OnInit, OnDestroy */{
 
-    constructor(private router: Router, private workoutService: WorkoutService) {
-
-    }
-
-    ngOnInit() {
-        this.subscription = this.workoutService.getWorkouts()
-            .subscribe(
-                workoutList => this.workoutList = workoutList,
-                (err: any) => console.log(err)
-            );
-    }
-
-    onSelect(workout: WorkoutPlan) {
-        this.router.navigate(['/workout', workout.name ]);
-    }
-
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
+    // public workoutList: Array<WorkoutPlan> = [];
+    // public notFound: boolean = false;
+    // public searchTerm: string;
+    // private subscription: any;
+    //
+    // constructor(private router: Router, private workoutService: WorkoutService) {
+    //
+    // }
+    //
+    // ngOnInit() {
+    //     this.subscription = this.workoutService.getWorkouts()
+    //         .subscribe(
+    //             workoutList => this.workoutList = workoutList,
+    //             (err: any) => console.log(err)
+    //         );
+    // }
+    //
+    // onSelect(workout: WorkoutPlan) {
+    //     this.router.navigate(['/workout', workout.name ]);
+    // }
+    //
+    // ngOnDestroy() {
+    //     this.subscription.unsubscribe();
+    // }
 }
