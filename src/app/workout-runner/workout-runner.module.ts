@@ -14,6 +14,7 @@ import {ServicesModule} from "../services/services.module";
 import {VideoDialogComponent} from "./video-dialog.component/video-dialog.component";
 import {MyAudioDirective} from "./workout-audio/my-audio.directive";
 import {WorkoutAudioComponent} from "./workout-audio/workout-audio.component/workout-audio.component";
+import {WorkoutContainerComponent} from "./workout-container.component/workout-container.component";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {WorkoutAudioComponent} from "./workout-audio/workout-audio.component/wor
         VideoPlayerComponent,
         VideoDialogComponent,
         MyAudioDirective,
-        WorkoutAudioComponent
+        WorkoutAudioComponent,
+        WorkoutContainerComponent
     ],
     providers: [WorkoutHistoryTracker],
     exports: [ WorkoutRunnerComponent ],

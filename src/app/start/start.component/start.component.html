@@ -5,10 +5,16 @@
     <br />
     <img src="/src/assets/images/start.png" class="center-block" />
     <br />
-    <div id="start" class="row">
+    <div id="start" class="row action">
       <a [routerLink]="['/workout']">
         <span>Start</span>
         <span class="glyphicon glyphicon-play"></span>
+      </a>
+    </div>
+    <div id="build" class="row action">
+      <a [routerLink]="'/builder'">
+        <span>Create a Workout</span>
+        <span class="glyphicon glyphicon-plus"></span>
       </a>
     </div>
   </div>

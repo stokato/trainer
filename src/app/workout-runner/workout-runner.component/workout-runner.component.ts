@@ -306,8 +306,9 @@ export class WorkoutRunnerComponent {
 
     resume() {
         this.startExerciseTimeTracking();
-        this.startExerciseTimeTracking();
+        // this.startExerciseTimeTracking();
         this.workoutPaused = false;
+        this.exerciseResumed.emit(this.currentExerciseIndex);
     }
 
     pauseResumeToggle() {

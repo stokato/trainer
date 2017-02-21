@@ -4,10 +4,12 @@
 
 import {Routes, RouterModule} from "@angular/router";
 import {StartComponent} from "./start/start.component/start.component";
-import {WorkoutRunnerComponent} from "./workout-runner/workout-runner.component/workout-runner.component";
+
 import {FinishComponent} from "./fihish/finish.component/finish.component";
 import {ModuleWithProviders} from "@angular/core";
 import {WorkoutHistoryComponent} from "./workout-history/workout-history.component/workout-history.component";
+import {WorkoutContainerComponent} from "./workout-runner/workout-container.component/workout-container.component";
+import {WorkoutBuilderComponent} from "./workout-builer/workout-builder.component/workout-builder.component";
 
 export const routes: Routes = [
     {
@@ -16,7 +18,7 @@ export const routes: Routes = [
     },
     {
         path: 'workout',
-        component: WorkoutRunnerComponent
+        component: WorkoutContainerComponent
     },
     {
         path: 'finish',
@@ -26,6 +28,11 @@ export const routes: Routes = [
         path: 'history',
         component: WorkoutHistoryComponent
     },
+    {
+        path: 'builder',
+        component: WorkoutBuilderComponent
+    },
+    // ...workoutBuilderRoutes,
     {
         path: '**',
         redirectTo: '/start'

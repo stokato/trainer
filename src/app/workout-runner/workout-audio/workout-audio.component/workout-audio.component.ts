@@ -5,7 +5,7 @@
 import {Component, ViewChild, forwardRef, Inject} from "@angular/core";
 import {MyAudioDirective} from "../my-audio.directive";
 import {ExerciseProgressEvent, ExerciseChangeeEvent, ExercisePlan} from "../../../model";
-import {WorkoutRunnerComponent} from "../../workout-runner.component/workout-runner.component";
+// import {WorkoutRunnerComponent} from "../../workout-runner.component/workout-runner.component";
 
 const template = require('./workout-audio.component.html');
 
@@ -21,12 +21,12 @@ export class WorkoutAudioComponent {
     @ViewChild('aboutToComplete') private aboutToComplete: MyAudioDirective;
 
     private nextupSound: string;
-    private subscriptions: Array<any>;
+    // private subscriptions: Array<any>;
 
-    constructor( @Inject(forwardRef(() => WorkoutRunnerComponent))
-                 private runner: WorkoutRunnerComponent) {
+    constructor( /* @Inject(forwardRef(() => WorkoutRunnerComponent))
+                 private runner: WorkoutRunnerComponent */) {
 
-        this.subscriptions = [
+/*        this.subscriptions = [
             this.runner.exercisePaused.subscribe((exercise: ExercisePlan) => {
                 this.stop();
             }),
@@ -42,7 +42,7 @@ export class WorkoutAudioComponent {
             this.runner.exerciseChanged.subscribe((state: ExerciseChangeeEvent) => {
                 this.onExerciseChanged(state);
             })
-        ]
+        ]*/
     }
 
     stop() {
@@ -86,5 +86,9 @@ export class WorkoutAudioComponent {
 
     ngAfterViewInit() {
         this.ticks.start();
+    }
+
+    ngOnDestroy() {
+        // this.subscriptions.forEach((s) => s.unsubscribe());
     }
 }

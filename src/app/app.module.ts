@@ -16,6 +16,7 @@ import {HeaderComponent} from "./header.component/header.component";
 import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 import {ServicesModule} from "./services/services.module";
+import {WorkoutBuilderModule} from "./workout-builer/workout-builder.module";
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import {ServicesModule} from "./services/services.module";
         routing,
         ModalModule.forRoot(),
         ServicesModule,
-        BootstrapModalModule
+        BootstrapModalModule,
+        WorkoutBuilderModule
     ],
     declarations: [
         AppComponent,
