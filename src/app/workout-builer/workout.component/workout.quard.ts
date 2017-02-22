@@ -6,6 +6,8 @@ import {Injectable} from "@angular/core";
 import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
 import {WorkoutPlan} from "../../model";
 import {WorkoutService} from "../../services/workout.service";
+import {Observable} from "rxjs";
+import {error} from "util";
 
 @Injectable()
 export class WorkoutGuard implements CanActivate {
@@ -19,15 +21,22 @@ export class WorkoutGuard implements CanActivate {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
-    ) {
-        this.workout = this.workoutService.getWorkout(route.params['id']);
+    ):Observable<boolean> {
+        let workoutName = route.params['id'];
 
-        if(this.workout) {
-            return true;
-        }
-
-        this.router.navigate(['/builder/workouts']);
-
-        return false;
+        return this.workoutService.getWorkout(workoutName)
+            .take(1)
+            .map(workout => !!workout)
+            .do(workoutExists => {
+                if(!workoutExists) this.router.navigate(['/builder/workouts']);
+            })
+            .catch(error => {
+                if(error.status === 404) {
+                    this.router.navigate(['/builder/workouts']);
+                    return Observable.of(false);
+                } else {
+                    return Observable.throw(error);
+                }
+            })
     }
 }

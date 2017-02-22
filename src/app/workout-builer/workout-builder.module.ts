@@ -14,13 +14,16 @@ import {LeftNavExercisesComponent} from "./navigation/left-nav-exercises.compone
 import {LeftNavMainComponent} from "./navigation/left-nav-main.component/left-nav-main.component";
 import {SubNavComponent} from "./navigation/sub-nav.component/sub-nav.component";
 import {PipesModule} from "../pipes/pipes.module";
-import {WorkoutBuilderService} from "./builder-services/workout-builder.services";
+import {WorkoutBuilderService} from "./builder-services/workout-builder.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
     imports: [
       CommonModule,
       workoutBuilderRouting,
-      PipesModule
+      PipesModule,
+      FormsModule,
+      ReactiveFormsModule
     ],
     declarations: [
         WorkoutBuilderComponent,

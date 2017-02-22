@@ -4,8 +4,8 @@
 
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {WorkoutPlan, ExercisePlan} from "../../model";
-import {ActivatedRoute} from "@angular/router";
-import {WorkoutBuilderService} from "../builder-services/workout-builder.services";
+import {ActivatedRoute, Router} from "@angular/router";
+import {WorkoutBuilderService} from "../builder-services/workout-builder.service";
 
 const html = require('./workout.component.html');
 
@@ -16,9 +16,13 @@ const html = require('./workout.component.html');
 export class WorkoutComponent implements OnInit, OnDestroy {
     workout: WorkoutPlan;
     sub: any;
+    submitted: boolean = false;
+    removeTouched: boolean = false;
+
 
     constructor(
         public route: ActivatedRoute,
+        public router: Router,
         public workoutBuilderService: WorkoutBuilderService
     ) {}
 
@@ -26,11 +30,31 @@ export class WorkoutComponent implements OnInit, OnDestroy {
         this.sub = this.route.params.subscribe(params =>  {
             let workoutName = params['id'];
 
-            if(!workoutName) {
-                workoutName = "";
+            if(!params['id']) {
+                this.workout = this.workoutBuilderService.startBuildingNew(workoutName);
+            } else {
+                let workoutName = params['id'];
+
+                this.workoutBuilderService.startBuildingExisting(workoutName)
+                    .subscribe(
+                        (data: WorkoutPlan) => {
+                            this.workout = <WorkoutPlan>data;
+                            if(!this.workout) {
+                                this.router.navigate(['/builder/workouts']);
+                            } else {
+                                this.workoutBuilderService.buildingWorkout = this.workout;
+                            }
+                        },
+                        (err: any) => {
+                            if(err.status === 404) {
+                                this.router.navigate(['/builder/workouts'])
+                            } else {
+                                console.error(err);
+                            }
+                        }
+                    );
             }
 
-            this.workout = this.workoutBuilderService.startBuilding(workoutName);
         });
     }
 
@@ -43,12 +67,19 @@ export class WorkoutComponent implements OnInit, OnDestroy {
     }
 
     removeExercise(exercisePlan: ExercisePlan) {
+        this.removeTouched = true;
         this.workoutBuilderService.removeExercise(exercisePlan);
     }
 
     save(formWorkout: any) {
-        console.log("Submitting");
-        console.log(this.workout);
+        this.submitted = true;
+
+        if(!formWorkout.valid) {
+            return;
+        }
+
+        this.workoutBuilderService.save();
+        this.router.navigate(['/builder/workouts']);
     }
 
     ngOnDestroy() {
